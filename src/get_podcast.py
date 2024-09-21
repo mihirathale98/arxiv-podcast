@@ -1,7 +1,7 @@
 from tqdm import tqdm
 
 from src.gemini_api import GeminiAPI
-from src.prompts import podcast_generation_prompt
+from src.prompts import podcast_generation_prompt, podcast_unification_prompt
 from src.utils import parse_llm_response
 
 gemini_api = GeminiAPI()
@@ -32,3 +32,7 @@ def get_all_pages_podcast(paper_title, content):
         page_data['page_podcast'] = page_podcast
     return content
 
+
+def merge_podcast(content):
+    pass
+    

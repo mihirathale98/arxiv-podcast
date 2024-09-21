@@ -58,3 +58,28 @@ The output format should be in the following format:
 
 Podcast:
 '''
+
+
+podcast_unification_prompt = """
+You are tasked with merging two partial segments of a technical podcast based on a research paper. Your goal is to seamlessly combine both parts, ensuring that no information is lost or repeated. As you do this, follow these rules:
+
+Flow and Continuity: Ensure the podcast flows naturally, maintaining a conversational tone between the segments. The transition from one segment to the next should be smooth.
+Information Preservation: Incorporate all key details from both podcast pieces. Ensure no important information from either segment is missed, duplicated, or inaccurately presented.
+Rephrasing and Clarification: Where necessary, rephrase technical points or questions to enhance clarity. If there are areas that could be expanded upon or explained more clearly, feel free to improvise while staying true to the original content.
+Tone Consistency: Maintain a conversational and engaging style throughout. Ensure that both segments sound like they belong to the same episode and are delivered with an equal level of detail and engagement.
+Once complete, the merged podcast should sound cohesive, informative, and ready for an audience of knowledgeable listeners interested in research, while still being approachable.
+
+Please maintain the format of the merged podcast to the similar format as the original.
+
+```json
+[{{"speaker" : "host", "text": "text"}}, {{"speaker" : "co-host", "text": "text"}}, ...]
+```
+
+Piece 1:
+{podcast_1}
+
+Piece 2:
+{podcast_2}
+
+Merged Podcast:
+"""
