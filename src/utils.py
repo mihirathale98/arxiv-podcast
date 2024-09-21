@@ -1,5 +1,7 @@
 import re
 import json
+import re
+import ast
 
 
 def save_paper_data(content, file_path):
@@ -18,3 +20,11 @@ def extract_title(text):
     else:
         title = "No title found"
     return title
+
+
+def parse_llm_response(response):
+    match = re.search(r"```json(.*)```", response, re.DOTALL)
+    if match:
+        return ast.literal_eval(match.group(1))
+    else:
+        return None

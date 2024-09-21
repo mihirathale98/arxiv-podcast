@@ -5,6 +5,7 @@ from src.get_paper import get_paper
 from src.pdf_parser import parse_pdf
 from src.get_inisghts import get_paper_insights
 from src.utils import save_paper_data, load_paper_data
+from src.get_podcast import get_all_pages_podcast
 
 
 
@@ -24,5 +25,5 @@ if search:
             insights = get_paper_insights(content)
         if insights:
             save_paper_data(insights, f"data/{paper_id}_insights.json")
-        st.write(insights)
-    
+        podcast = get_all_pages_podcast(paper_id, insights)
+        st.write(podcast)

@@ -28,5 +28,33 @@ Previous page summary:
 Given page from the paper:
 {page_text}
 
-Output:
+Insights for page {page_no}:
+'''
+
+
+podcast_generation_prompt = '''
+You are hosting a technical podcast, and today, you're going to explain the contents of a specific page from a research paper in a conversational, engaging style. Your goal is to simplify complex concepts while keeping the discussion intellectually stimulating.
+
+Start by introducing the research topic briefly, then dive into the details presented on the given page. Imagine you're speaking with a co-host who will ask clarifying questions along the way. Here is a guide for the structure:
+
+Introduction: Summarize the broader topic of the paper in 2-3 sentences.
+Detailed Exploration: Explain the main points, methodologies, findings, or theories discussed on the page in a concise yet detailed manner.
+Co-Host Engagement: At key moments, imagine your co-host asks clarifying questions like:
+“Can you break that down a little more?”
+“What would be a real-world example of this?”
+Real-World Application: Discuss how the research or concepts on this page might apply to practical situations or innovations.
+Summary: Wrap up by restating the most important takeaways from the page.
+Ensure the tone is approachable, curious, and engaging, as though you're explaining it to an audience of intelligent expert listeners.
+
+For this podcast, focus on the following insights from the content of page number {page_no} of the research paper titled "{title}".
+
+insights:
+{page_summary}
+
+The output format should be in the following format:
+```json
+[{{"speaker" : "host", "text": "text"}}, {{"speaker" : "co-host", "text": "text"}}, ...]
+```
+
+Podcast:
 '''
