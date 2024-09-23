@@ -33,27 +33,26 @@ Insights for page {page_no}:
 
 
 podcast_generation_prompt = '''
-You are hosting a technical podcast, and today, you're going to explain the contents of a specific page from a research paper in a conversational, engaging style. Your goal is to simplify complex concepts while keeping the discussion intellectually stimulating.
+You are hosting a segment of a technical podcast that focuses on explaining the contents of a specific page from a research paper. Your goal is to simplify complex concepts while keeping the discussion engaging and intellectually stimulating. Imagine you're speaking with a co-host who will ask clarifying questions. Structure your segment as follows:
 
-Start by introducing the research topic briefly, then dive into the details presented on the given page. Imagine you're speaking with a co-host who will ask clarifying questions along the way. Here is a guide for the structure:
+Brief introduction: Summarize the topic of the page in 1-2 sentences.
+Detailed exploration: Explain the main points, methodologies, findings, or theories discussed on the page.
+Co-host engagement: Include moments where your co-host asks clarifying questions.
+Real-world application: Briefly discuss how the concepts on this page might apply to practical situations.
+Quick summary: Restate the most important takeaways from the page.
 
-Introduction: Summarize the broader topic of the paper in 2-3 sentences.
-Detailed Exploration: Explain the main points, methodologies, findings, or theories discussed on the page in a concise yet detailed manner.
-Co-Host Engagement: At key moments, imagine your co-host asks clarifying questions like:
-“Can you break that down a little more?”
-“What would be a real-world example of this?”
-Real-World Application: Discuss how the research or concepts on this page might apply to practical situations or innovations.
-Summary: Wrap up by restating the most important takeaways from the page.
-Ensure the tone is approachable, curious, and engaging, as though you're explaining it to an audience of intelligent expert listeners.
+Make the podcast as detailed as possible.
 
-For this podcast, focus on the following insights from the content of page number {page_no} of the research paper titled "{title}".
+Maintain an approachable, curious, and engaging tone throughout the segment. Focus on the following insights from page number {page_no} of the research paper titled "{title}":
+insights: {page_summary}
 
-insights:
-{page_summary}
-
-The output format should be in the following format:
-```json
-[{{"speaker" : "host", "text": "text"}}, {{"speaker" : "co-host", "text": "text"}}, ...]
+The output should be in the following JSON format only, within the quotes:
+```
+json[
+  {{"speaker": "host", "text": "text"}},
+  {{"speaker": "co-host", "text": "text"}},
+  ...
+]
 ```
 
 Podcast:
@@ -69,8 +68,11 @@ Rephrasing and Clarification: Where necessary, rephrase technical points or ques
 Tone Consistency: Maintain a conversational and engaging style throughout. Ensure that both segments sound like they belong to the same episode and are delivered with an equal level of detail and engagement.
 Once complete, the merged podcast should sound cohesive, informative, and ready for an audience of knowledgeable listeners interested in research, while still being approachable.
 
+Make the merged podcast as detailed as possible. Combine the podcasts to create a cohesive and engaging technical podcast.
+
 Please maintain the format of the merged podcast to the similar format as the original.
 
+Output format should be in the following format:
 ```json
 [{{"speaker" : "host", "text": "text"}}, {{"speaker" : "co-host", "text": "text"}}, ...]
 ```
@@ -81,5 +83,5 @@ Piece 1:
 Piece 2:
 {podcast_2}
 
-Merged Podcast:
+Output:
 """
