@@ -16,6 +16,13 @@ def get_page_insight(title, text, prev_page_summary, page_no):
 
 
 def get_paper_insights(content):
+
+    new_content = {}
+    for k, v in content.items():
+        new_content[int(k)] = v
+
+    content = new_content
+
     title = extract_title(content[0]['page_text'])
 
     for page_no, page_data in tqdm(content.items(), total=len(content), desc="Extracting Insights", position=0):

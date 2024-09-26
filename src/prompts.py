@@ -19,6 +19,10 @@ Provide a concise yet detailed summary that includes all these elements while ma
 
 Additionally you are also provided with the previous page summary to avoid information loss and redundancy.
 
+Do not explicitly mention the page number in the insights.
+
+If it is the first page of the paper, mention the title of the paper.
+
 Title:
 {title}
 
@@ -41,6 +45,7 @@ Co-host engagement: Include moments where your co-host asks clarifying questions
 Real-world application: Briefly discuss how the concepts on this page might apply to practical situations.
 Quick summary: Restate the most important takeaways from the page.
 
+Do not explicitly mention the page number.
 Make the podcast as detailed as possible.
 
 Maintain an approachable, curious, and engaging tone throughout the segment. Focus on the following insights from page number {page_no} of the research paper titled "{title}":
@@ -60,28 +65,48 @@ Podcast:
 
 
 podcast_unification_prompt = """
-You are tasked with merging two partial segments of a technical podcast based on a research paper. Your goal is to seamlessly combine both parts, ensuring that no information is lost or repeated. As you do this, follow these rules:
+You are tasked with merging two partial segments of a technical podcast discussing a research paper. Your objective is to combine both parts seamlessly, ensuring that no information is omitted or repeated. Follow these guidelines:
 
-Flow and Continuity: Ensure the podcast flows naturally, maintaining a conversational tone between the segments. The transition from one segment to the next should be smooth.
-Information Preservation: Incorporate all key details from both podcast pieces. Ensure no important information from either segment is missed, duplicated, or inaccurately presented.
-Rephrasing and Clarification: Where necessary, rephrase technical points or questions to enhance clarity. If there are areas that could be expanded upon or explained more clearly, feel free to improvise while staying true to the original content.
-Tone Consistency: Maintain a conversational and engaging style throughout. Ensure that both segments sound like they belong to the same episode and are delivered with an equal level of detail and engagement.
-Once complete, the merged podcast should sound cohesive, informative, and ready for an audience of knowledgeable listeners interested in research, while still being approachable.
+1. **Flow and Continuity**: 
+   - Ensure the podcast flows naturally, with a conversational tone between the segments.
+   - The transition from one segment to the next should be smooth and unnoticeable.
 
-Make the merged podcast as detailed as possible. Combine the podcasts to create a cohesive and engaging technical podcast.
+2. **Information Preservation**: 
+   - Incorporate all critical details from both segments.
+   - Avoid omitting, duplicating, or inaccurately presenting any information from either segment.
 
-Please maintain the format of the merged podcast to the similar format as the original.
+3. **Rephrasing and Clarification**: 
+   - Rephrase technical points or questions where necessary to improve clarity.
+   - If certain areas could benefit from further explanation or elaboration, feel free to expand upon them while remaining true to the original content.
 
-Output format should be in the following format:
-```json
-[{{"speaker" : "host", "text": "text"}}, {{"speaker" : "co-host", "text": "text"}}, ...]
-```
+4. **Tone Consistency**: 
+   - Maintain a consistent conversational and engaging tone throughout the podcast.
+   - Ensure both segments sound cohesive, as if they belong to the same episode, with uniform detail and engagement.
 
-Piece 1:
-{podcast_1}
+5. **Introduction**:
+   - If the first piece of the podcast is missing an introduction, mention the title of the paper and provide a brief introduction to the research topic being discussed.
 
-Piece 2:
-{podcast_2}
+6. **Detail and Length**:
+   - Aim to make the combined podcast as detailed as possible while keeping the total length under 7000 words.
+   - The merged podcast should be informative, engaging, and suitable for an audience familiar with research but still approachable.
+
+7. **Output Format**:
+   - Maintain the format of the original podcast.
+   - Use the following format for the output:
+   ```json
+   [
+     {"speaker" : "host", "text": "text"},
+     {"speaker" : "co-host", "text": "text"},
+     ...
+   ]
+   ```
+
+
+Input Segments:
+
+Piece 1: {podcast_1}
+Piece 2: {podcast_2}
+
 
 Output:
 """
